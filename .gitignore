@@ -1,0 +1,17 @@
+# Compiled output
+/dist
+/tmp
+
+# Dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+
+# Misc
+npm-debug.log
+yarn-error.log
+
+# System Files
+.DS_Store
+Thumbs.db

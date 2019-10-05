@@ -1,0 +1,16 @@
+{
+  "name": "the-remote-challenge",
+  "version": "0.1.0",
+  "description": "Full-stack application to help candidates schedule interviews",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwilhel1/the-remote-challenge.git"
+  },
+  "author": "dwilhel1@hawk.iit.edu",
+  "license": "ISC",
+  "homepage": "https://github.com/dwilhel1/the-remote-challenge#readme"
+}
