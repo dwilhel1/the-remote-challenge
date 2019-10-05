@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -9,6 +10,7 @@ const demoTimeSlots = [
   { "id": 9, "start_time": "2019-02-28T14:00:00.000Z" },
 ];
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/employer_schedules', (req, res) => {
