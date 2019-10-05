@@ -6,6 +6,20 @@ This is an application to help candidates schedule interviews. As a candidate, y
 
 ![](https://i.imgur.com/hO5leeK.png "Application screenshot")
 
+**Choosing a time**
+
+![](https://i.imgur.com/BpEE0LT.gif)
+
+**Notifications**
+
+![](https://i.imgur.com/A6EBFq6.png)
+
+![](https://i.imgur.com/TKkkdiz.png)
+
+**`GET /employer_schedules` payload**
+
+![](https://i.imgur.com/w33ccby.png)
+
 # Notable features
 
 * Submit button is disabled before input is selected
@@ -111,8 +125,8 @@ If building / serving the frontend application is desired, feel free to perform 
 I had fun working on this application and wished there was more time! I am especially proud of the simple nature of the UI, and I love the ease of implementing date-time formatting with MomentJS. I struggled the most with deciding what to do in the limited amount of time I had to work on this project. If I had more time, I would have done the following, at minimum:
 
 * Add and enforce appropriate linting packages, to the project and pipeline respectively
-  * ESLint
-  * TSLint
+  * [ESLint](https://eslint.org/)
+  * [TSLint](https://palantir.github.io/tslint/)
   * Evaluate a CSS / SASS linting framework
 * Add unit and e2e tests
   * Remove the fourth "Invalid test" date-time option from the UI
