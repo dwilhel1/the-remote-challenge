@@ -11,7 +11,6 @@ const Chooser = (): React.ReactElement => {
   const fetchUrlPrefix = process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : '';
   const [ timeSlots, setTimeSlots ] = useState([]);
   const [ loading, setLoading ] = useState(true);
-  const [ error, setError ] = useState(null);
   const [ values, setValues ] = useState({
     timeSlot: { id: 0, start_time: '' },
   });
@@ -25,9 +24,9 @@ const Chooser = (): React.ReactElement => {
     const res = await fetch(`${fetchUrlPrefix}/schedule_interview?id=${id}`, fetchParams);
     res.json()
       .then((res) => {
-        res.error ? console.error(res.error) : alert('success');
+        res.error ? alert(res.error) : alert('Interview successfully scheduled!');
       })
-      .catch(error => alert('failure: ' + error))
+      .catch(error => alert('Error: ' + error))
   };
 
   const getTimeSlots = async () => {
@@ -38,8 +37,8 @@ const Chooser = (): React.ReactElement => {
           setLoading(false);
         })
         .catch(error => {
-          setError(error);
           setLoading(false);
+          alert(`Error retrieving time slots: ${error}`);
         });
     };
 
@@ -50,31 +49,35 @@ const Chooser = (): React.ReactElement => {
   if (loading) {
     return <p>Loading...</p>
   }
-  if (error) {
-    console.error(error);
-  }
 
   return (
-    <div>
-      <p>Select a date and time</p>
-      { timeSlots.length ? timeSlots.map((timeSlot: TimeSlot) =>
+    <div className={'card'}>
+      <h2 className={'title'}>Select a date and time</h2>
+      <div>
+        { timeSlots.length ? timeSlots.map((timeSlot: TimeSlot) =>
+          <p
+            key={timeSlot.id}
+            onClick={handleChange('timeSlot', timeSlot)}
+            className={`item chooser-button ${timeSlot.id === values.timeSlot.id ? 'chooser-selected' : ''}`}
+          >
+            {formatDateTime(timeSlot.start_time)}
+          </p>) :
+          <p>No time slots available.</p>
+        }
         <p
-          key={timeSlot.id}
-          onClick={handleChange('timeSlot', timeSlot)}
-          className={`chooser-button ${timeSlot.id === values.timeSlot.id ? 'chooser-selected' : ''}`}
+          className={`item ${9999 === values.timeSlot.id ? 'chooser-selected' : ''}`}
+          onClick={handleChange('timeSlot', {id: 9999, start_time: new Date()})}
         >
-          {formatDateTime(timeSlot.start_time)}
-        </p>) :
-        <p>No time slots available.</p>
-      }
-      { values.timeSlot.start_time ?
-        <button
-          onClick={() => postTimeSlot(values.timeSlot.id)}
-          title={formatDateTime(values.timeSlot.start_time)}
-        >
-          Submit
-        </button> : null
-      }
+          Invalid test
+        </p>
+      </div>
+      <button
+        disabled={!Boolean(values.timeSlot.start_time)}
+        onClick={() => postTimeSlot(values.timeSlot.id)}
+        title={values.timeSlot.start_time ? formatDateTime(values.timeSlot.start_time) : 'Choose a time slot'}
+      >
+        Submit
+      </button>
     </div>
   )
 };

@@ -1,0 +1,41 @@
+$shared-border-radius: 5px;
+$card-padding-margin: 24px;
+$default-spacing: 16px;
+
+$color-white: #fff;
+$color-ink: #212b36;
+
+.card {
+  border-radius: $shared-border-radius;
+  padding: $card-padding-margin;
+  margin: $card-padding-margin;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  background-color: $color-white;
+}
+
+.item {
+  border-radius: $shared-border-radius;
+  background-color: #7986cb;
+  margin-bottom: $default-spacing;
+  color: $color-white;
+  padding: 4px;
+  text-align: center;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #8A97DC;
+  }
+}
+
+.item-invalid {
+  background-color: red;
+}
+
+.title {
+  margin-bottom: $default-spacing;
+  color: $color-ink;
+}
+
+.justify-content-center {
+  justify-content: center;
+}

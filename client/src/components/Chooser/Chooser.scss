@@ -1,7 +1,16 @@
+$color-active: #1a237e;
+
 .chooser-button {
   cursor: pointer;
 }
 
 .chooser-selected {
-  border: 2px solid red;
+  background-color: $color-active;
+  animation-name: select;
+  animation-duration: .5s;
+}
+
+@keyframes select {
+  from {background-color: #7986cb;}
+  to {background-color: $color-active;}
 }
