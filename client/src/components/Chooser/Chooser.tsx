@@ -20,24 +20,19 @@ const Chooser = (): React.ReactElement => {
     setValues({ ...values, [key]: value });
   };
 
-  const submitTimeSlot = async (timeSlot: TimeSlot) => {
-    console.log(timeSlot);
-    const fetchParams = {
-      method: 'POST',
-    };
-    const res = await fetch(`${fetchUrlPrefix}/schedule_interview?id=${timeSlot.id}`, fetchParams);
-    res
-      .json()
-      .then(res => {
-        console.log(res);
+  const postTimeSlot = async (id: number) => {
+    const fetchParams = { method: 'POST' };
+    const res = await fetch(`${fetchUrlPrefix}/schedule_interview?id=${id}`, fetchParams);
+    res.json()
+      .then((res) => {
+        res.error ? console.error(res.error) : alert('success');
       })
-      .catch(error => console.error(error))
+      .catch(error => alert('failure: ' + error))
   };
 
   const getTimeSlots = async () => {
       const res = await fetch(`${fetchUrlPrefix}/employer_schedules`);
-      res
-        .json()
+      res.json()
         .then(res => {
           setTimeSlots(res);
           setLoading(false);
@@ -62,20 +57,19 @@ const Chooser = (): React.ReactElement => {
   return (
     <div>
       <p>Select a date and time</p>
-      { timeSlots.length ? timeSlots.map((timeSlot: TimeSlot, index) =>
+      { timeSlots.length ? timeSlots.map((timeSlot: TimeSlot) =>
         <p
-          key={index}
+          key={timeSlot.id}
           onClick={handleChange('timeSlot', timeSlot)}
-          className={'chooser-button'}
+          className={`chooser-button ${timeSlot.id === values.timeSlot.id ? 'chooser-selected' : ''}`}
         >
           {formatDateTime(timeSlot.start_time)}
         </p>) :
         <p>No time slots available.</p>
       }
-
       { values.timeSlot.start_time ?
         <button
-          onClick={() => submitTimeSlot(values.timeSlot)}
+          onClick={() => postTimeSlot(values.timeSlot.id)}
           title={formatDateTime(values.timeSlot.start_time)}
         >
           Submit

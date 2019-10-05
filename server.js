@@ -21,12 +21,15 @@ app.get('/employer_schedules', (req, res) => {
 
 app.post('/schedule_interview', (req, res) => {
   let statusCode = 500;
+  const body = {};
   if (req.query && req.query.id) {
     if (demoTimeSlots.map(timeSlot => timeSlot.id).includes(parseInt(req.query.id, 10))) {
       statusCode = 200;
+    } else {
+      body.error = 'Error: Time slot ID is invalid'
     }
   }
-  res.sendStatus(statusCode);
+  res.send(statusCode, body);
 });
 
 app.get('*', (req, res) => {
