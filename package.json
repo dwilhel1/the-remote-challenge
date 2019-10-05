@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Full-stack application to help candidates schedule interviews",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "repository": "git+https://github.com/dwilhel1/the-remote-challenge.git",
   "author": "dwilhel1@hawk.iit.edu",
@@ -11,6 +12,7 @@
   "homepage": "https://github.com/dwilhel1/the-remote-challenge#readme",
   "private": true,
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "path": "^0.12.7"
   }
 }
