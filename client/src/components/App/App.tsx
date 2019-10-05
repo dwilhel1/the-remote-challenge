@@ -1,11 +1,8 @@
 import React from 'react';
+import Chooser from '../Chooser/Chooser';
 
-const App = ()  => {
-  return (
-    <div>
-      <p>Hello world</p>
-    </div>
-  );
-};
+const App: React.FC = () => (
+  <Chooser />
+);
 
 export default App;

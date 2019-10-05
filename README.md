@@ -40,6 +40,14 @@ The API must have two endpoints:
 
 # Installation
 
+## Prerequisites
+
 # Running the application
 
 # Final thoughts
+
+## Summary
+
+## Testing
+
+## General
